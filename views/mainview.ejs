@@ -2,18 +2,49 @@
 <html>
 	<head>
 		<title>Lectern</title>
-		<link type="text/css" rel="mainview.css">
+		<link rel="stylesheet" href="../public/stylesheets/mainview.css">
+		<script src="../public/scripts/mainview.js"></script>
 	</head>
 
 	<body>
-		<div id="mainview">
-			<div class="video-container"></div>
+		<div id="main-container">
+			<div id="navs">
+				<div class="nav-item" id="classes">Classes</div>
+				<div class="nav-item" id="videos">Videos</div>
+				<div class="nav-item" id="logout">Logout</div>
+			</div>
+			<div id="main-content">
+				<h1>Title</h1>
+				<div id="video-container"></div>
+				<div id="subs">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit cursus maximus. Integer eget sem id odio suscipit interdum vel viverra est. Aliquam finibus sem justo, at egestas lectus rutrum ut. Pellentesque tempor lacus vitae porttitor tempus. Fusce at interdum dolor. Nam ex mauris, rhoncus at massa id, molestie tempus odio. Nam eleifend facilisis tortor vel porttitor. Donec faucibus nibh in sapien imperdiet facilisis. Sed pellentesque tristique ante, a sollicitudin massa aliquet ut.
+
+					Nunc blandit diam nec tincidunt suscipit. Nam quam ipsum, lobortis a orci quis, sodales imperdiet nibh. Aliquam erat volutpat. Aenean et porta justo. Nullam at sapien consectetur, lacinia enim et, sodales metus. Suspendisse viverra neque magna, non iaculis elit condimentum eu. Aenean id lorem eu nisl molestie sollicitudin a ac magna. Curabitur iaculis risus augue, et suscipit tortor dignissim sed.
+
+					Maecenas aliquam vel sapien eget ultrices. Etiam id auctor nulla. Phasellus malesuada turpis in nisl faucibus placerat. Integer dignissim sapien ut erat dictum condimentum. Aenean non nulla purus. Maecenas elementum venenatis nisl, ac tincidunt orci suscipit quis. Nullam hendrerit quam risus, a laoreet elit fermentum sit amet. Nullam nec hendrerit augue. Proin in dui fermentum, rutrum urna sed, ullamcorper lorem. Cras vitae turpis accumsan sem varius malesuada eget at nulla. Nulla quam velit, tempor vel tellus vitae, lobortis pharetra velit. Cras tristique volutpat justo, ut ultrices quam sagittis et.
+
+					Nulla facilisi. Aenean nunc ligula, volutpat vitae aliquet vitae, bibendum vitae lorem. Vivamus consequat pulvinar orci, eu dictum justo varius vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean convallis, tortor nec consequat faucibus, sapien augue mattis tellus, ut hendrerit neque sapien eget lectus. Duis ante nisl, maximus ut convallis eget, maximus in nulla. Fusce a dolor sed quam molestie hendrerit ac at dui. Sed non ultricies felis, in gravida tellus. Mauris lacinia, nulla non elementum pulvinar, nibh nulla bibendum urna, at venenatis lorem ligula ornare enim. Pellentesque lobortis quam sed enim vehicula laoreet. Sed at lobortis dolor. Sed scelerisque bibendum quam eget congue.
+
+					Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam fringilla risus sit amet tortor lacinia, eget accumsan nunc pellentesque. Vivamus quis dolor quam. Etiam vel interdum justo. Nunc eu urna pulvinar justo semper euismod sit amet vitae arcu. Curabitur vestibulum convallis ultrices. Phasellus sit amet massa ut nulla tincidunt bibendum vitae cursus sapien. Nunc tellus sapien, tempor quis efficitur id, luctus in eros. Ut maximus ante ac augue volutpat, id cursus dui laoreet. Pellentesque dictum, turpis a tincidunt pulvinar, est arcu varius felis, sit amet hendrerit dui ligula ut est. Fusce ut arcu quis diam tristique blandit nec quis velit. Pellentesque vehicula a arcu non rutrum. Fusce condimentum metus quis eros auctor viverra.
+				</div>
+			</div>
 		</div>
-		<div id="sidebar">
+		<div id="side-container">
 			<div id="tabs">
-				<div id="notes"></div>
-				<div id="discussion"></div>
-				<div id="comments"></div>
+				<div class="tab-item" id="notes">Notes</div>
+				<div class="tab-item" id="discussion">Discussion</div>
+				<div class="tab-item" id="comments">Comments</div>
+			</div>
+			<div id="side-content">
+				<div class="tab-info" id="notes-info">
+					x
+				</div>
+				<div class="tab-info" id="discussion-info">
+					y
+				</div>
+				<div class="tab-info" id="comments-info">
+					z
+				</div>
 			</div>
 		</div>
 	</body>
