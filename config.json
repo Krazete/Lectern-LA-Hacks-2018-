@@ -1,0 +1,8 @@
+{
+    "endpointUrl": "http://localhost:3000",
+    "secret": "8xpJl24Hur20veWeMrR5TFF7PE1NUCnmvHmL78AuSj5Pj74N3tLfAuSdqe7Hdkj",
+    "jwtCookie": "lectern",
+    "salt": 10,
+    "usersCollection": "users",
+    "dataCollection": "data"
+}
