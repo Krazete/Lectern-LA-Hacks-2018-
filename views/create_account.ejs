@@ -8,39 +8,50 @@
 </head>
 
 <body>
-<div id="container">
-    <div id="content-container">
-        <div class="logo-container">
-            <img id="logo" src="../public/img/placeholder_logo.png">
-        </div>
-        <div class="logo-container">
-            <div id="logo-text">
-                Create an Account
-            </div>
-        </div>
-    </div>
+    <div id="container">
 
-    <div id="account-container">
-        <div class="login-container">
-            <div class="fillin-box">
-                <input class="fillin-input" type="text" placeholder="Email" required>
+        <div id="content-container">
+            <div class="logo-container">
+                <img id="logo" src="../public/img/placeholder_logo.png">
+            </div>
+            <div class="logo-container">
+                <div id="logo-text">
+                    Create an Account
+                </div>
             </div>
         </div>
-        <div class="login-container">
-            <div class="fillin-box">
-                <input class="fillin-input" type="password" placeholder="Password" required>
+
+        <div id="account-container">
+            <div class="create-container">
+                <div class="fillin-box">
+                    <input class="fillin-input" type="text" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="create-container">
+                <div class="fillin-box">
+                    <input class="fillin-input" type="password" placeholder="Password" required>
+                </div>
+            </div>
+            <div class="create-container">
+                <div id="button-text">
+                    You are a
+                </div>
+                <div id="button-container">
+                    <button class="student_or_instructor" type="button"> Student </button>
+                    <button class="student_or_instructor" type="button"> Instructor </button>
+                </div>
+            </div>
+            <div class="create-container">
+                <button id="account-creator" type="submit"> Create </button>
+            </div>
+            <div class="create-container">
+                <div id="login-account">
+                    Already have an account?  Login here
+                </div>
             </div>
         </div>
-        <div class="login-container">
-            <button type="submit"> Login </button>
-        </div>
-        <div class="login-container">
-            <div id="create-account">
-                Need an account?  Click here
-            </div>
-        </div>
+
     </div>
-</div>
 </body>
 
 </html>
