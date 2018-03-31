@@ -1,9 +1,8 @@
 body {
-    font-family: Lato;
+    color: #EEEEEE;
 }
 
 #main-container {
-    background: #5bd;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -24,12 +23,16 @@ body {
     cursor: pointer;
 }
 
+.nav-item:hover {
+    color: #88AABB;
+}
+
 #main-content {
     margin: 10px;
 }
 
 #video-container {
-    background: #000;
+    background: #000000;
     width: 640px;
     height: 360px;
     margin: 10px auto;
@@ -38,14 +41,14 @@ body {
 #subs {
     margin: auto;
     height: 250px;
-    background: #4ac;
+    background: #354C66;
     padding: 10px;
     border-radius: 10px;
     overflow: scroll;
 }
 
 #side-container {
-    background: #4D89FF;
+    background: #88AABB;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -55,13 +58,12 @@ body {
 }
 
 #tabs {
-    background: #5bd;
+    background: #141E30;
     display: flex;
 }
 
 .tab-item {
-    background: #034;
-    color: #7df;
+    background: #225566;
     flex: 1;
     border-radius: 10px 10px 0 0;
     padding: 10px;
@@ -69,12 +71,18 @@ body {
     padding-bottom: 5px;
     margin-top: 5px;
     cursor: pointer;
-    transition: margin-top 100ms;
+    transition: margin 100ms, padding 100ms;
+}
+
+.tab-item:hover {
+    margin-top: 0;
+    padding-bottom: 10px;
 }
 
 .tab-item.selected {
-    background: #256;
+    background: #88AABB;
     margin-top: 0;
+    padding-bottom: 10px;
 }
 
 #side-content {
@@ -87,4 +95,19 @@ body {
 
 .tab-info.selected {
     display: initial;
+}
+
+.ql-formats {
+    margin-right: 0 !important;
+}
+
+#editor {
+    background: #EEEEEE;
+    color: #000000;
+}
+
+#submit {
+    font-size: 14px;
+    margin: 10px auto;
+    cursor: pointer;
 }
