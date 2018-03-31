@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register</title>
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  </head>
+  <body>
+    <% if (err){ %>
+      <script>
+        toastr.warning(`<%=err%>`); 
+      </script>
+    <% } %>
+	<div class="title"><h1>Register</h1></div>
+	
+    <div class="formBox">
+        <form action="/register" method="post">
+          <div>
+          <b>Email</b> <input type="text" name="email">
+          </div>
+
+          <div>
+          <b>Password</b> <input type="password" name="password">
+          </div>
+          <button type="submit">Register</button>
+        </form>
+        <div><p>Already have an account? <a href="/login">Login</a><p></div>
+    </div>
+	
+  </body>
+</html>

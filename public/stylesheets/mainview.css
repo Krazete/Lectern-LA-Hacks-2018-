@@ -1,3 +1,7 @@
+body {
+    font-family: Lato;
+}
+
 #main-container {
     background: #5bd;
     position: absolute;
@@ -33,13 +37,15 @@
 
 #subs {
     margin: auto;
-    height: 500px;
+    height: 250px;
     background: #4ac;
     padding: 10px;
+    border-radius: 10px;
+    overflow: scroll;
 }
 
 #side-container {
-    background: #256;
+    background: #4D89FF;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -63,6 +69,7 @@
     padding-bottom: 5px;
     margin-top: 5px;
     cursor: pointer;
+    transition: margin-top 100ms;
 }
 
 .tab-item.selected {

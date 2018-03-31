@@ -4,5 +4,7 @@
     "jwtCookie": "lectern",
     "salt": 10,
     "usersCollection": "users",
-    "dataCollection": "data"
+    "classCollection": "class",
+    "noteCollection": "note",
+    "chatCollection": "chat"
 }

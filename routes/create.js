@@ -6,11 +6,11 @@ var auth = require('../auth/auth');
 var DB = require('../db/db');
 var db = new DB();
 
-// Display login page
-router.get('/', auth, function (req, res, next) {
+// Display create page
+router.get('/', function (req, res, next) {
     // User logged in
     if (req.auth) {
-        res.render('mainview');
+        res.render('create');
     }
     else {
         // No user logged in
