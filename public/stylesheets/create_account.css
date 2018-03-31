@@ -126,15 +126,22 @@ img {
 .student_or_instructor {
     width: 50%;
     height: 100%;
+}
+
+.button-choice {
+    position: relative;
+    top: 21%;
+    width: 50%;
+    height: 79%;
     float: left;
+    text-align: center;
+}
 
-    border: transparent;
-    border-radius: 10px;
-
-    background-color: #4D89FF;
+label {
     font-size: 2.5vh;
     color: whitesmoke;
 }
+
 
 #account-creator {
     position: relative;
@@ -169,4 +176,5 @@ button:active {
     top: 25%;
     text-align: center;
     color: #4D89FF;
+    font-size: 2vh;
 }
