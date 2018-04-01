@@ -172,12 +172,10 @@ body {
 
 #notes-display {
     margin: 10px;
-    height: 100px;
 }
 
 #comments-display {
     margin: 10px;
-    height: 100px;
 }
 
 .notes-section {
@@ -186,8 +184,6 @@ body {
 
     background: #EEEEEE;
     color: #000000;
-
-    height: 50px;
 }
 
 .comments-section {
@@ -196,6 +192,4 @@ body {
 
     background: #EEEEEE;
     color: #000000;
-
-    height: 50px;
 }
