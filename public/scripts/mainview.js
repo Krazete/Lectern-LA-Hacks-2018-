@@ -35,6 +35,20 @@ function videoListener() {
 }
 
 function init() {
+    var video = document.createElement("video");
+    video.src = "/temporary.mp4";
+    var videoContainer = document.getElementById("video-container");
+    videoContainer.appendChild(video);
+
+    subtexts = Array.from(document.getElementsByClassName("subtext"));
+    subtexts.forEach(function (subtext) {
+        subtext.classList.add("subtext");
+        subtext.dataset.timestamp = 0;
+        subtext.addEventListener("click", function () {
+            video.setTime(subtext.dataset.timestamp);
+        });
+    });
+
     tabItems = Array.from(document.getElementsByClassName("tab-item"));
     tabInfos = Array.from(document.getElementsByClassName("tab-info"));
     tabItems.forEach(function (tabItem) {
@@ -46,13 +60,12 @@ function init() {
     selectTabItem(tabItems[0]);
     scrollSubs(1);
 
-    var quill = new Quill("#editor", {
+    var notesQuill = new Quill("#notes-editor", {
         theme: "snow"
     });
-
-    var submit = document.getElementById("submit");
-    submit.addEventListener("click", function () {
-        var quillRoot = Array.from(quill.root.children);
+    var notesSubmit = document.getElementById("notes-submit");
+    notesSubmit.addEventListener("click", function () {
+        var quillRoot = Array.from(notesQuill.root.children);
         var div = document.createElement("div");
         quillRoot.forEach(function (p) {
             div.appendChild(p);
@@ -60,15 +73,23 @@ function init() {
         document.body.appendChild(div);
     });
 
-    subtexts = Array.from(document.getElementsByClassName("subtext"));
-    subtexts.forEach(function (subtext) {
-        subtext.classList.add("subtext");
-        subtext.dataset.timestamp = 0;
-        subtext.addEventListener("click", function () {
-            video.setTime(subtext.dataset.timestamp);
+    var commentsQuill = new Quill("#comments-editor", {
+        theme: "snow"
+    });
+    var commentsSubmit = document.getElementById("comments-submit");
+    commentsSubmit.addEventListener("click", function () {
+        var quillRoot = Array.from(commentsQuill.root.children);
+        var div = document.createElement("div");
+        quillRoot.forEach(function (p) {
+            div.appendChild(p);
         });
+        document.body.appendChild(div);
     });
 }
+
+window.addEventListener("DOMContentLoaded", init);
+
+
 
 /* Begin Easter Egg */
 var konami = (function () {
@@ -87,11 +108,10 @@ var konami = (function () {
             }
         }
         if (list.length == konamiCode.length) {
+            window.removeEventListener("keydown", konami);
             document.body.appendChild(document.createElement("script")).src="https://rawgit.com/Krazete/bookmarklets/master/tri.js";
         }
     };
 })();
 window.addEventListener("keydown", konami);
 /* End Easter Egg */
-
-window.addEventListener("DOMContentLoaded", init);

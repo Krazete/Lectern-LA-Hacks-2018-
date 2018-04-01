@@ -101,12 +101,12 @@ body {
     margin-right: 0 !important;
 }
 
-#editor {
+#notes-editor, #comments-editor {
     background: #EEEEEE;
     color: #000000;
 }
 
-#submit {
+#notes-submit, #comments-submit {
     font-size: 14px;
     margin: 10px auto;
     cursor: pointer;
