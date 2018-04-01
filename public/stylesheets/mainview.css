@@ -164,7 +164,7 @@ body {
     background-color: #ddd;
   }
 
-  .dropdown:hover .drop-content {
+  .dropdown:hover .drop-content, .drop-content > input {
     display: block;
   }
 
