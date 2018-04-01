@@ -36,16 +36,16 @@
 				<div class="nav-item dropdown" id="videos">
 				<a class="dropbtn" href="/">Videos</a>
 				<div class="drop-content">
-					<% for (let c of classes) { %>
-						<input type="button" data-vid="<%=c.vlink%>">A</input>
+					<% for (let v of viewClass.vlink) { %>
+						<input type="button" onclick="changeVideo(`<%=v%>`)"><%=v%></input>
 					<% } %>
 				</div>
-                </div>
 
-				<div class="nav-item dropdown" id="logout">Logout</div>
+				<div class="nav-item" id="logout">Logout</div>
+				</div>
 			</div>
 			<div id="main-content" data-vid="emMmgw8aK-w">
-					<h1><%= classname %></h1>
+					<h1><%= viewClass.classname %></h1>
 					<div id="video-container"></div>
 					<div id="subs"></div>
 				</div>
@@ -58,13 +58,11 @@
 			</div>
 			<div id="side-content">
 				<div class="tab-info" id="notes-info">
-					<div id="notes-content"></div>
 					<div id="notes-editor"></div>
 					<button id="notes-submit">Add Note</button>
 				</div>
 				<!-- <div class="tab-info" id="discussion-info"></div> -->
 				<div class="tab-info" id="comments-info">
-					<div id="comments-content"></div>
 					<div id="comments-editor"></div>
 					<button id="comments-submit">Submit Comment</button>
 				</div>
