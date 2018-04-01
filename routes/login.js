@@ -38,7 +38,7 @@ router.post('/', async (req, res, next) => {
             });
             // Hash provided password to compare with hash in db
             if (bcrypt.compareSync(req.body.password, foundUser.hash)) {
-                const token = await jwt.sign({ uid: foundUser.userid }, config.secret);
+                const token = await jwt.sign({ uid: foundUser.userid, utype: foundUser.type }, config.secret);
                 res.cookie(config.jwtCookie, token);
                 res.redirect('/class');
             }

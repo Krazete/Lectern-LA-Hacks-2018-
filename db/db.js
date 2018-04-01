@@ -6,7 +6,7 @@ function DB() {
 }
 // user: userid, email, hash, type
 // class: userid, classid, classname, videoid
-// note: userid, classid, note
+// note: userid, classid, vlink,  note
 // chat: classid, userid-arr, msg-arr
 // video: videoid, userid, link
 
@@ -91,10 +91,17 @@ DB.prototype.addVideoToClass = function(did, linkarr, vlink) {
 //     });
 // }
 
-DB.prototype.addNote = function(email, classid, note) {
+DB.prototype.addNote = function(userid, classid, vlink, note) {
     return this.db.collection(config.noteCollection).add({
-        email: email,
+        userid: parseInt(userid),
         classid: parseInt(classid),
+        vlink: vlink,
+        note: note
+    });
+}
+
+DB.prototype.updateNote = function(did, note) {
+    return this.db.collection(config.noteCollection).doc(did).update({
         note: note
     });
 }

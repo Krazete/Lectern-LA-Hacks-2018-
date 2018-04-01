@@ -26,12 +26,11 @@ router.get('/:classid', auth, async (req, res, next) => {
                         viewClass = foundClass;
                     }
                 });
-                console.log(classes);
                 if (!viewClass) {
-                    res.render('mainview', { "viewClass": classes[0], "classes": classes });
+                    res.render('mainview', { "utype": req.utype, "viewClass": classes[0], "classes": classes });
                 }
                 else {
-                    res.render('mainview', { "viewClass": viewClass, "classes": classes });
+                    res.render('mainview', { "utype": req.utype, "viewClass": viewClass, "classes": classes });
                 }
             }
             else {
@@ -63,13 +62,11 @@ router.get('/', auth, async (req, res, next) => {
                 snapshot.forEach(doc => {
                     foundUserClass = doc.data();
                     classes.push(foundUserClass);
-                    console.log(classes);
                 });
                 res.redirect('/class/' + classes[0].classid);
             }
         }
         catch (err) {
-            console.log(err);
             res.redirect('/list');
         }
     }

@@ -24,6 +24,9 @@
 	<body>
 		<div id="main-container">
 			<div id="navs">
+				<% if (utype == "instructor") { %>
+					<a class="nav-item" href="/create">Add video to a class</a>
+				<% } %>
 				<div class="nav-item dropdown" id="classes">
 				<a class="dropbtn" href="/">Class</a>
 				<div class="drop-content">
@@ -45,7 +48,8 @@
                 <div class="nav-item dropdown" id="logout">Logout</div>
 			</div>
 			<div id="main-content" data-vid="emMmgw8aK-w">
-					<h1><%= viewClass.classname %></h1>
+					<h1 id="classname"><%= viewClass.classname %></h1>
+					<input id="classid" type="hidden" value=<%= viewClass.classid %>>
 					<div id="video-container"></div>
 					<div id="subs"></div>
 				</div>
@@ -59,7 +63,7 @@
 			<div id="side-content">
 				<div class="tab-info" id="notes-info">
 					<div id="notes-editor"></div>
-					<button id="notes-submit">Add Note</button>
+					<button id="notes-submit" onclick="saveNote()">Save Note</button>
 				</div>
 				<!-- <div class="tab-info" id="discussion-info"></div> -->
 				<div class="tab-info" id="comments-info">
