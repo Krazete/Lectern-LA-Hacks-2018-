@@ -187,12 +187,22 @@ function init() {
     });
 }
 
+function parseTime(time) {
+    var time = time.toFixed(2);
+    var seconds = time % 60;
+    var minutes = (time - seconds) / 60 % 60;
+    var hours = (time - 60 * minutes - seconds) / 3600;
+    return [hours, minutes, seconds].join(":");
+}
+
 function newComment(text) {
+    var now = player.getCurrentTime();
     var ts = document.createElement("a");
     ts.className = "ts";
-    ts.innerHTML = player.getCurrentTime();
+    ts.dataset.timestamp = now;
+    ts.innerHTML = parseTime(now);
     ts.addEventListener("click", function () {
-        player.seekTo(parseFloat(ts.innerHTML));
+        player.seekTo(parseFloat(ts.dataset.timestamp));
     });
     var comment = document.createElement("div");
     comment.className = "comments-section";
