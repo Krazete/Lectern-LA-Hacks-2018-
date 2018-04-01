@@ -19,7 +19,7 @@ function selectTabItem(tabItem) {
     document.getElementById(tabItem.id + "-info").classList.add("selected");
 }
 
-function videoListener() {
+function videoListener(x) {
     var passed = true;
     var subtexts = document.getElementById("subs").children;
     for (var i = 0; i < subtexts.length; i++) {
@@ -28,7 +28,7 @@ function videoListener() {
             subtexts[i].classList.add("passed");
         }
     }
-    if (player.getPlayerState() == 1) {
+    if (player.getPlayerState() == 1 && x != "once") {
         requestAnimationFrame(videoListener);
     }
 }
@@ -50,7 +50,9 @@ function initSubs(response) {
         subtext.dataset.timestamp = s.getAttribute("start");
         subtext.dataset.timedelta = s.getAttribute("dur");
         subtext.addEventListener("click", function () {
-            player.seekTo(parseFloat(subtext.dataset.timestamp));
+            var newTime = parseFloat(subtext.dataset.timestamp);
+            player.seekTo(newTime);
+            videoListener("once");
         });
         subs.appendChild(subtext);
     });
@@ -65,7 +67,7 @@ function loadVideo() {
     video.id = "youtube-video";
     video.width = "100%";
     video.height = "100%";
-    video.src = "https://www.youtube.com/embed/" + vid + "?modestbranding=1&autohide=1&showinfo=0&controls=0&cc_load_policy=3";
+    video.src = "https://www.youtube.com/embed/" + vid + "?modestbranding=1&autohide=1&showinfo=0&controls=0&cc_load_policy=3&enablejsapi=1";
     video.setAttribute("frameborder", "0");
     video.setAttribute("allowfullscreen", "");
     videoContainer.appendChild(video);
@@ -85,6 +87,8 @@ function loadVideo() {
     xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xml.onload = initSubs;
     xml.send();
+
+    getNote();
 }
 
 function onYouTubeIframeAPIReady() {
@@ -182,8 +186,6 @@ function init() {
         });
         document.body.appendChild(div);
     });
-
-    getNote();
 
     var logout = document.getElementById("logout");
     logout.addEventListener("click", function () {
