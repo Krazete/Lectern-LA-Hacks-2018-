@@ -19,7 +19,7 @@ function selectTabItem(tabItem) {
     document.getElementById(tabItem.id + "-info").classList.add("selected");
 }
 
-function videoListener(x) {
+function videoListener() {
     var passed = true;
     var subtexts = document.getElementById("subs").children;
     for (var i = 0; i < subtexts.length; i++) {
@@ -28,7 +28,7 @@ function videoListener(x) {
             subtexts[i].classList.add("passed");
         }
     }
-    if (player.getPlayerState() == 1 && x != "once") {
+    if (player.getPlayerState() == 1) {
         requestAnimationFrame(videoListener);
     }
 }
@@ -52,7 +52,7 @@ function initSubs(response) {
         subtext.addEventListener("click", function () {
             var newTime = parseFloat(subtext.dataset.timestamp);
             player.seekTo(newTime);
-            videoListener("once");
+            player.playVideo();
         });
         subs.appendChild(subtext);
     });
