@@ -29,13 +29,16 @@ function videoListener() {
 }
 
 function initSubs(response) {
+    var parser = new DOMParser;
+
     var content = document.createElement("div");
     content.innerHTML = this.responseText;
     var subtexts = Array.from(content.getElementsByTagName("text"));
     subtexts.forEach(function (s) {
         var subtext = document.createElement("span");
         subtext.className = "subtext";
-        subtext.innerHTML = s.innerHTML + " ";
+        var dom = parser.parseFromString("<!doctype html><body>" + s.innerHTML, "text/html");
+        subtext.innerHTML = dom.body.textContent + " ";
         subtext.dataset.timestamp = s.getAttribute("start");
         subtext.dataset.timedelta = s.getAttribute("dur");
         subtext.addEventListener("click", function () {
@@ -84,62 +87,22 @@ function initSubs(response) {
 }
 
 function init() {
-    var vid = "NutStjpWJck";
+    var vid = document.getElementById("main-content").dataset.vid;
 
-    // var videoContainer = document.getElementById("video-container");
-    // video = document.createElement("video");
-    // video.src = "/temporary.mp4";
-    // video.setAttribute("controls", "");
-    // video.ontimeupdate = videoListener;
-    // videoContainer.appendChild(video);
+    var videoContainer = document.getElementById("video-container");
+    video = document.createElement("iframe");
+    video.width = "100%";
+    video.height = "100%";
+    video.src = "https://www.youtube.com/embed/" + vid + "?modestbranding=1&autohide=1&showinfo=0&controls=0&cc_load_policy=3";
+    video.setAttribute("frameborder", "0");
+    video.setAttribute("allowfullscreen", "");
+    videoContainer.appendChild(video);
 
     var xml = new XMLHttpRequest();
     xml.open("POST", "https://video.google.com/timedtext?lang=en&v=" + vid, true);
     xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xml.onload = initSubs;
     xml.send();
-
-//
-    // 2. This code loads the IFrame Player API code asynchronously.
-    var tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    // 3. This function creates an <iframe> (and YouTube player)
-    //    after the API code downloads.
-    var player;
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player("player", {
-            height: "390",
-            width: "640",
-            videoId: "M7lc1UVf-VE",
-            events: {
-                "onReady": onPlayerReady,
-                "onStateChange": onPlayerStateChange
-            }
-        });
-    }
-
-    // 4. The API will call this function when the video player is ready.
-    function onPlayerReady(e) {
-      e.target.playVideo();
-    }
-
-    // 5. The API calls this function when the player"s state changes.
-    //    The function indicates that when playing a video (state=1),
-    //    the player should play for six seconds and then stop.
-    var done = false;
-    function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-            setTimeout(stopVideo, 6000);
-            done = true;
-        }
-    }
-    function stopVideo() {
-        player.stopVideo();
-    }
-//
 
     tabItems = Array.from(document.getElementsByClassName("tab-item"));
     tabInfos = Array.from(document.getElementsByClassName("tab-info"));
