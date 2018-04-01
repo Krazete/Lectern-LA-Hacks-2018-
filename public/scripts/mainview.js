@@ -50,7 +50,7 @@ function initSubs(response) {
         subtext.dataset.timestamp = s.getAttribute("start");
         subtext.dataset.timedelta = s.getAttribute("dur");
         subtext.addEventListener("click", function () {
-            player.seekTo(subtext.dataset.timestamp);
+            player.seekTo(parseFloat(subtext.dataset.timestamp));
         });
         subs.appendChild(subtext);
     });
@@ -136,13 +136,16 @@ function getNote() {
 }
 
 function init() {
-    getNote();
-    var videoList = Array.from(document.getElementById("videos").getElementsByTagName("input")).forEach(function (e) {
+    var videoList = Array.from(document.getElementById("videos").getElementsByTagName("input"));
+    videoList.forEach(function (e) {
         e.addEventListener("click", function () {
             document.getElementById("main-content").dataset.vid = this.dataset.vid;
             loadVideo();
         });
     });
+    if (videoList.length > 0) {
+        document.getElementById("main-content").dataset.vid = videoList[0].dataset.vid;
+    }
 
     tabItems = Array.from(document.getElementsByClassName("tab-item"));
     tabInfos = Array.from(document.getElementsByClassName("tab-info"));
@@ -179,6 +182,8 @@ function init() {
         });
         document.body.appendChild(div);
     });
+  
+    getNote();
 
     var logout = document.getElementById("logout");
     logout.addEventListener("click", function () {
