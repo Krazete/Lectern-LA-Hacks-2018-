@@ -48,7 +48,7 @@ function djb2(str) {
         char = str.charCodeAt(i);
         hash = ((hash << 5) + hash) + char;
     }
-    return hash;  
+    return hash;
 }
 
 module.exports = router;

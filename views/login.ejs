@@ -1,45 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Login</title>
-    <link rel='stylesheet' href='/stylesheets/login.css' />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-  </head>
-  
+
+    <head>
+        <title>Login</title>
+        <link rel='stylesheet' href='/stylesheets/index.css' />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    </head>
+
   <body>
-    <% if (err){ %>
-      <script>
-        toastr.warning(`<%=err%>`); 
-      </script>
-    <% } %>
-    <% if (msg){ %>
-      <script>
-        toastr.success(`<%=msg%>`); 
-      </script>
-    <% } %>
-	<div class="title"><h1>Login</h1></div>
-	
-  <div class="formBox">
-    <form action="/login" method="post">
-      <div>
-      <b>Email:</b> <input type="text" name="email">
+      <% if (err){ %>
+        <script>
+          toastr.warning(`<%=err%>`);
+        </script>
+      <% } %>
+      <% if (msg){ %>
+        <script>
+          toastr.success(`<%=msg%>`);
+        </script>
+      <% } %>
+
+      <div id="container">
+
+          <div class="content-container">
+              <div class="logo-container">
+                  <img id="logo" src="img/placeholder_logo.png">
+              </div>
+              <div class="logo-container">
+                  <div id="logo-text">
+                      Welcome
+                  </div>
+              </div>
+          </div>
+
+          <div id="separator">
+
+          </div>
+
+          <form action="/login" method="post" class="content-container">
+              <div class="login-container">
+                  <div class="fillin-box">
+                      <input class="fillin-input" type="text" name="email" placeholder="Email" required>
+                  </div>
+              </div>
+              <div class="login-container">
+                  <div class="fillin-box">
+                      <input class="fillin-input" type="password" name="password" placeholder="Password" required>
+                  </div>
+              </div>
+              <div id="remember-me">
+                  <input type="checkbox" name="remember">
+                  Remember Me
+              </div>
+              <div class="login-container">
+                  <button type="submit"> Login </button>
+              </div>
+              <div class="login-container">
+                  <div id="create-account">
+                      Need an account?  <a href="/register" style="text-decoration: none"> Create one here </a>
+                  </div>
+              </div>
+          </form>
+
       </div>
 
-      <div>
-      <b>Password:</b> <input type="password" name="password">
-      </div>
-
-      <button type="submit">Login</button>
-    
-      <div class="rememberMe">
-          <input type="checkbox" name="remember">
-          <span>Remember Me</span>
-      </div>          
-		</form>
-	    <div><p>Don't have an account? <a href="/register">Sign up</a><p></div>
-	</div>
-	
   </body>
+
+    <script src='/scripts/index.js'></script>
+
 </html>

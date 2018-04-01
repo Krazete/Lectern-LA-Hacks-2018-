@@ -1,33 +1,76 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Register</title>
-    <link rel='stylesheet' href='/stylesheets/login.css' />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-  </head>
-  <body>
-    <% if (err){ %>
-      <script>
-        toastr.warning(`<%=err%>`); 
-      </script>
-    <% } %>
-	<div class="title"><h1>Register</h1></div>
-	
-    <div class="formBox">
-        <form action="/register" method="post">
-          <div>
-          <b>Email</b> <input type="text" name="email">
-          </div>
 
-          <div>
-          <b>Password</b> <input type="password" name="password">
-          </div>
-          <button type="submit">Register</button>
-        </form>
-        <div><p>Already have an account? <a href="/login">Login</a><p></div>
-    </div>
+    <head>
+        <title>Register</title>
+        <link rel='stylesheet' href='/stylesheets/create_account.css' />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    </head>
+
+    <body>
+        <% if (err){ %>
+            <script>
+                toastr.warning(`<%=err%>`);
+            </script>
+        <% } %>
+
+        <div id="container">
+
+            <div id="content-container">
+                <div class="logo-container">
+                    <img id="logo" src="/img/placeholder_logo.png">
+                </div>
+                <div class="logo-container">
+                    <div id="logo-text">
+                        Create an Account
+                    </div>
+                </div>
+            </div>
+
+            <form action="/register" method="post" id="account-container">
+                <div class="create-container">
+                    <div class="fillin-box">
+                        <input class="fillin-input" type="text" name="email" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="create-container">
+                    <div class="fillin-box">
+                        <input class="fillin-input" type="password" name="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="create-container">
+                    <div id="button-text">
+                        You are a
+                    </div>
+                    <div id="button-container">
+                        <div class="button-choice">
+                            <label for="choice1">
+                                <input type="radio" name="type" id="choice1" value="student" required> Student
+                            </label>
+                        </div>
+                        <div class="button-choice">
+                            <label for="choice2">
+                                <input type="radio" name="type" id="choice2" value="instructor"> Instructor
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="create-container">
+                    <button id="account-creator" type="submit"> Register </button>
+                </div>
+                <div class="create-container">
+                    <div id="login-account">
+                        Already have an account?  <a href="/login" style="text-decoration: none"> Login here </a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
 	
   </body>
+
+    <script src='/scripts/create_account.js'></script>
+
 </html>

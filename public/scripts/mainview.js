@@ -1,6 +1,6 @@
 var tabItems;
 var tabInfos;
-var subtexts;
+var video;
 
 function resetTabItems() {
     tabItems.forEach(function (tabItem) {
@@ -16,25 +16,108 @@ function selectTabItem(tabItem) {
     document.getElementById(tabItem.id + "-info").classList.add("selected");
 }
 
-function scrollSubs(d) {
-    var subs = document.getElementById("subs");
-    subs.scrollBy(0, d);
-    requestAnimationFrame(function () {
-        scrollSubs(d);
-    });
-}
-
 function videoListener() {
+    console.log(video.currentTime);
+    var passed = true;
+    var subtexts = document.getElementById("subs").children;
     for (var i = 0; i < subtexts.length; i++) {
         subtexts[i].className = "subtext";
-        if (subtexts[i].dataset.timestamp < video.getTime()) {
+        if (subtexts[i].dataset.timestamp < video.currentTime) {
             subtexts[i].classList.add("passed");
         }
     }
-    requestAnimationFrame(videoListener);
+}
+
+function initSubs(response) {
+    var subs = document.getElementById("subs");
+    subs.innerHTML = "";
+
+    var parser = new DOMParser;
+
+    var content = document.createElement("div");
+    content.innerHTML = this.responseText;
+    var subtexts = Array.from(content.getElementsByTagName("text"));
+    subtexts.forEach(function (s) {
+        var subtext = document.createElement("span");
+        subtext.className = "subtext";
+        var dom = parser.parseFromString("<!doctype html><body>" + s.innerHTML, "text/html");
+        subtext.innerHTML = dom.body.textContent + " ";
+        subtext.dataset.timestamp = s.getAttribute("start");
+        subtext.dataset.timedelta = s.getAttribute("dur");
+        subtext.addEventListener("click", function () {
+            video.currentTime = subtext.dataset.timestamp;
+        });
+        subs.appendChild(subtext);
+    });
+
+    // var demo = `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
+    // Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.
+    // Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi.
+    // Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Maecenas malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu. Phasellus accumsan cursus velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Vestibulum fringilla pede sit amet augue. In turpis. Pellentesque posuere. Praesent turpis.
+    // Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Donec elit libero, sodales nec, volutpat a, suscipit non, turpis. Nullam sagittis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit pede quis nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Ut varius tincidunt libero. Phasellus dolor. Maecenas vestibulum mollis diam. Pellentesque ut neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    // In dui magna, posuere eget, vestibulum et, tempor auctor, justo. In ac felis quis tortor malesuada pretium. Pellentesque auctor neque nec urna. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Aenean viverra rhoncus pede. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi. Phasellus a est. Phasellus magna.
+    // In hac habitasse platea dictumst. Curabitur at lacus ac velit ornare lobortis. Curabitur a felis in nunc fringilla tristique. Morbi mattis ullamcorper velit. Phasellus gravida semper nisi. Nullam vel sem. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Sed hendrerit. Morbi ac felis. Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi. Nunc nulla. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Donec venenatis vulputate lorem.
+    // Morbi nec metus. Phasellus blandit leo ut odio. Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra felis nunc et lorem. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. In auctor lobortis lacus. Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Vestibulum ullamcorper mauris at ligula. Fusce fermentum. Nullam cursus lacinia erat. Praesent blandit laoreet nibh.
+    // Fusce convallis metus id felis luctus adipiscing. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Quisque id mi. Ut tincidunt tincidunt erat. Etiam feugiat lorem non metus. Vestibulum dapibus nunc ac augue. Curabitur vestibulum aliquam leo. Praesent egestas neque eu enim. In hac habitasse platea dictumst. Fusce a quam. Etiam ut purus mattis mauris sodales aliquam. Curabitur nisi. Quisque malesuada placerat nisl. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus.
+    // Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor. Mauris sollicitudin fermentum libero. Praesent nonummy mi in odio. Nunc interdum lacus sit amet orci. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Morbi mollis tellus ac sapien. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Fusce vel dui. Sed in libero ut nibh placerat accumsan. Proin faucibus arcu quis ante. In consectetuer turpis ut velit. Nulla sit amet est. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Suspendisse feugiat. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi. Praesent nec nisl a purus blandit viverra. Praesent ac massa at ligula laoreet iaculis. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit.
+    // Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Fusce pharetra convallis urna. Quisque ut nisi. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Suspendisse non nisl sit amet velit hendrerit rutrum. Ut leo. Ut a nisl id ante tempus hendrerit. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Suspendisse eu ligula. Nulla facilisi. Donec id justo. Praesent porttitor, nulla vitae posuere iaculis, arcu nisl dignissim dolor, a pretium mi sem ut ipsum. Curabitur suscipit suscipit tellus.
+    // Praesent vestibulum dapibus nibh. Etiam iaculis nunc ac metus. Ut id nisl quis enim dignissim sagittis. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Proin magna. Duis vel nibh at velit scelerisque suscipit. Curabitur turpis. Vestibulum suscipit nulla quis orci. Fusce ac felis sit amet ligula pharetra condimentum. Maecenas egestas arcu quis ligula mattis placerat. Duis lobortis massa imperdiet quam. Suspendisse potenti.
+    // Pellentesque commodo eros a enim. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Sed libero. Aliquam erat volutpat. Etiam vitae tortor. Morbi vestibulum volutpat enim. Aliquam eu nunc. Nunc sed turpis. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Nulla porta dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.
+    // Pellentesque dapibus hendrerit tortor. Praesent egestas tristique nibh. Sed a libero. Cras varius. Donec vitae orci sed dolor rutrum auctor. Fusce egestas elit eget lorem. Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Nam at tortor in tellus interdum sagittis. Aliquam lobortis. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Curabitur blandit mollis lacus. Nam adipiscing. Vestibulum eu odio.
+    // Vivamus laoreet. Nullam tincidunt adipiscing enim. Phasellus tempus. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. Fusce neque. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Vivamus aliquet elit ac nisl. Fusce fermentum odio nec arcu. Vivamus euismod mauris. In ut quam vitae odio lacinia tincidunt. Praesent ut ligula non mi varius sagittis. Cras sagittis. Praesent ac sem eget est egestas volutpat. Vivamus consectetuer hendrerit lacus. Cras non dolor. Vivamus in erat ut urna cursus vestibulum. Fusce commodo aliquam arcu. Nam commodo suscipit quam. Quisque id odio. Praesent venenatis metus at tortor pulvinar varius.`;
+    // var demoList = demo.split(" ");
+    // var demoDict = demoList.map(function (d, i) {
+    //     return {
+    //         "word": d,
+    //         "timestamp": video.duration * i / demo.length
+    //     };
+    // });
+    // demoDict.forEach(function (d) {
+    //     var subtext = document.createElement("span");
+    //     subtext.className = "subtext";
+    //     subtext.innerHTML = d.word + " ";
+    //     subtext.dataset.timestamp = d.timestamp;
+    //     document.getElementById("subs").appendChild(subtext);
+    // });
+    //
+    // subtexts = Array.from(document.getElementsByClassName("subtext"));
+    // subtexts.forEach(function (subtext) {
+    //     subtext.classList.add("subtext");
+    //     subtext.addEventListener("click", function () {
+    //         video.currentTime = subtext.dataset.timestamp;
+    //     });
+    // });
+}
+
+function loadVideo() {
+    var vid = document.getElementById("main-content").dataset.vid;
+
+    var videoContainer = document.getElementById("video-container");
+    videoContainer.innerHTML = "";
+    video = document.createElement("iframe");
+    video.width = "100%";
+    video.height = "100%";
+    video.src = "https://www.youtube.com/embed/" + vid + "?modestbranding=1&autohide=1&showinfo=0&controls=0&cc_load_policy=3";
+    video.setAttribute("frameborder", "0");
+    video.setAttribute("allowfullscreen", "");
+    videoContainer.appendChild(video);
+
+    var xml = new XMLHttpRequest();
+    xml.open("POST", "https://video.google.com/timedtext?lang=en&v=" + vid, true);
+    xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xml.onload = initSubs;
+    xml.send();
 }
 
 function init() {
+    loadVideo();
+    var videoList = Array.from(document.getElementById("videos").getElementsByTagName("input")).forEach(function (e) {
+        e.addEventListener("click", function () {
+            document.getElementById("main-content").dataset.vid = this.dataset.vid;
+            loadVideo();
+        });
+    });
+
     tabItems = Array.from(document.getElementsByClassName("tab-item"));
     tabInfos = Array.from(document.getElementsByClassName("tab-info"));
     tabItems.forEach(function (tabItem) {
@@ -44,15 +127,13 @@ function init() {
         });
     });
     selectTabItem(tabItems[0]);
-    scrollSubs(1);
 
-    var quill = new Quill("#editor", {
+    var notesQuill = new Quill("#notes-editor", {
         theme: "snow"
     });
-
-    var submit = document.getElementById("submit");
-    submit.addEventListener("click", function () {
-        var quillRoot = Array.from(quill.root.children);
+    var notesSubmit = document.getElementById("notes-submit");
+    notesSubmit.addEventListener("click", function () {
+        var quillRoot = Array.from(notesQuill.root.children);
         var div = document.createElement("div");
         quillRoot.forEach(function (p) {
             div.appendChild(p);
@@ -60,15 +141,38 @@ function init() {
         document.body.appendChild(div);
     });
 
-    subtexts = Array.from(document.getElementsByClassName("subtext"));
-    subtexts.forEach(function (subtext) {
-        subtext.classList.add("subtext");
-        subtext.dataset.timestamp = 0;
-        subtext.addEventListener("click", function () {
-            video.setTime(subtext.dataset.timestamp);
+    var commentsQuill = new Quill("#comments-editor", {
+        modules: {
+            toolbar: false
+        },
+        theme: "snow"
+    });
+    commentsQuill.on("text-change", function () {
+        // console.log(commentsQuill.getText());
+        // commentsQuill.setText(commentsQuill.getText());
+        // var len = commentsQuill.getText().length;
+        commentsQuill.removeFormat(0, Number.MAX_SAFE_INTEGER);
+    });
+    var commentsSubmit = document.getElementById("comments-submit");
+    commentsSubmit.addEventListener("click", function () {
+        var quillRoot = Array.from(commentsQuill.root.children);
+        var div = document.createElement("div");
+        quillRoot.forEach(function (p) {
+            div.appendChild(p);
         });
+        document.body.appendChild(div);
+    });
+
+    var logout = document.getElementById("logout");
+    logout.addEventListener("click", function () {
+        document.cookie = "lectern=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        location.reload();
     });
 }
+
+window.addEventListener("DOMContentLoaded", init);
+
+
 
 /* Begin Easter Egg */
 var konami = (function () {
@@ -87,11 +191,10 @@ var konami = (function () {
             }
         }
         if (list.length == konamiCode.length) {
+            window.removeEventListener("keydown", konami);
             document.body.appendChild(document.createElement("script")).src="https://rawgit.com/Krazete/bookmarklets/master/tri.js";
         }
     };
 })();
 window.addEventListener("keydown", konami);
 /* End Easter Egg */
-
-window.addEventListener("DOMContentLoaded", init);

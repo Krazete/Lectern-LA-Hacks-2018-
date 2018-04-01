@@ -15,12 +15,24 @@ img {
     max-height: 100%;
 }
 
+a {
+    color: inherit;
+    transition: 0.2s ease-in;
+}
+
+a:hover {
+    color: whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+}
+
 #container {
     position: relative;
     top: 15%;
     left: 33%;
     height: 70%;
     width: 34%;
+
+    display: none;
 }
 
 .content-container {
@@ -50,7 +62,7 @@ img {
 }
 
 #separator {
-    height: 10%;
+    height: 5%;
 }
 
 .login-container {
@@ -90,13 +102,34 @@ img {
     text-align: center;
     font-size: 3vh;
     color: whitesmoke;
-    transition: 0.2s;
+    transition: 0.2s ease-out;
 }
 
 .fillin-input:focus {
     outline-width: 0;
     border-bottom: 3px solid #4D89FF;
     transition: 0.2s;
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: whitesmoke;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
+#remember-me {
+    position: relative;
+    top: 5%;
+    text-align: center;
+    color: whitesmoke;
+    height: 15%;
+    font-size: 2vh;
 }
 
 button {
@@ -116,6 +149,7 @@ button {
     font-size: 2.2vh;
     color: whitesmoke;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 button:hover {

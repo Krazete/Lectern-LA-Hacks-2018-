@@ -2,6 +2,10 @@ body {
     color: #EEEEEE;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 #main-container {
     position: absolute;
     top: 0;
@@ -42,9 +46,18 @@ body {
     margin: auto;
     height: 250px;
     background: #354C66;
+    text-align: justify;
     padding: 10px;
     border-radius: 10px;
     overflow: scroll;
+}
+
+.subtext {
+    margin: 1px;
+}
+
+.subtext.passed {
+    background: #4D89FF;
 }
 
 #side-container {
@@ -101,12 +114,12 @@ body {
     margin-right: 0 !important;
 }
 
-#editor {
+#notes-editor, #comments-editor {
     background: #EEEEEE;
     color: #000000;
 }
 
-#submit {
+#notes-submit, #comments-submit {
     font-size: 14px;
     margin: 10px auto;
     cursor: pointer;
