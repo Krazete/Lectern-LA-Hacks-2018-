@@ -2,27 +2,28 @@
 <html>
   <head>
     <title>Create</title>
-    <link rel='stylesheet' href='/stylesheets/login.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/create_account.css' />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.js"></script>
     <script src="//wzrd.in/standalone/blob-util@latest"></script>
   </head>
-  
+
   <body>
     <% if (err){ %>
       <script>
-        toastr.warning(`<%=err%>`); 
+        toastr.warning(`<%=err%>`);
       </script>
     <% } %>
     <% if (msg){ %>
       <script>
-        toastr.success(`<%=msg%>`); 
+        toastr.success(`<%=msg%>`);
       </script>
     <% } %>
 	<div class="title"><h1>Create a class</h1></div>
-	
+
   <div class="formBox">
     <form action="/create" method="post">
       <input type="hidden" name="userid" value=<%=userid%>>
@@ -41,10 +42,10 @@
         <button type="button" id="upload">Upload</button>
       </div> -->
 
-      <button type="submit">Create</button>        
+      <button type="submit">Create</button>
 	  </form>
 	</div>
-    
+
     <!-- <script>
     (function ($) {
         $('#upload').on('click', function () {
