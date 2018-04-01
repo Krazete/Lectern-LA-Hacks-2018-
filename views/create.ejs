@@ -2,8 +2,7 @@
 <html>
   <head>
     <title>Create</title>
-    <link rel='stylesheet' href='/stylesheets/index.css' />
-    <link rel='stylesheet' href='/stylesheets/create_account.css' />
+    <link rel='stylesheet' href='/stylesheets/create.css' />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -22,64 +21,32 @@
         toastr.success(`<%=msg%>`);
       </script>
     <% } %>
-	<div class="title"><h1>Create a class</h1></div>
 
-  <div class="formBox">
-    <form action="/create" method="post">
-      <input type="hidden" name="userid" value=<%=userid%>>
-      <div>
-        <b>Classname:</b> <input type="text" name="classname">
-      </div>
-      <div>
-        <b>Video Link:</b> <input type="text" name="vlink">
-      </div>
-      <!-- <div id="message"></div>
-      <div>
-        <label for="file">Upload a video:</label>
-        <input type="file" id="file">
-      </div>
-      <div>
-        <button type="button" id="upload">Upload</button>
-      </div> -->
 
-      <button type="submit">Create</button>
-	  </form>
-	</div>
+    <div id="container">
+        <div id="title">Create a new class</div>
 
-    <!-- <script>
-    (function ($) {
-        $('#upload').on('click', function () {
-        var file = $('#file')[0].files[0];
-        var fileReader = new FileReader();
-        fileReader.onloadend = function (e) {
-            var arrayBuffer = e.target.result;
-            var fileType = "video/" + file.name.split('.').pop();
-            blobUtil.arrayBufferToBlob(arrayBuffer, fileType).then(function (blob) {
-                var fd = new FormData();
-                fd.append('video', blob);
-                $.ajax({
-                    type: 'POST',
-                    url: "http://localhost:3000/api/upload/" + `<%=userid%>`,
-                    data: fd,
-                    processData: false,
-                    contentType: false
-                }).done(function(data) {
-                    console.log(data);
-                });
-                // $.post("http://localhost:3000/api/upload/" + `<%=userid%>`, { video: blob })
-                // .done(function(data, status) {
-                //     if (status == 200) {
-                //         console.log("Good");
-                //     }
-                //     else {
-                //         alert("Failed to upload data");
-                //     }
-                // });
-            }).catch(console.log.bind(console));
-        };
-        fileReader.readAsDataURL(file);
-        });
-    })(jQuery);
-    </script> -->
+        <div class="formBox">
+            <form action="/create" method="post">
+                <input type="hidden" name="userid" value=<%=userid%>>
+                <div class="fillin-box">
+                    <div class="fillin-identifier"> Classname: </div>
+                    <input class="fillin-input" type="text" name="classname" placeholder="CS 101" required>
+                </div>
+                <div class="fillin-box">
+                    <div class="fillin-identifier"> Video Link: </div>
+                    <input class="fillin-input" type="text" name="vlink" placeholder="_RUmzzRLzNs" required>
+                </div>
+                <div id="button-container">
+                    <button type="submit">Create</button>
+                </div>
+                <a href="/class" style="text-decoration: none"> Or, click here to go back </a>
+            </form>
+        </div>
+    </div>
+
   </body>
+
+  <script src='/scripts/create.js'></script>
+
 </html>
