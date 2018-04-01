@@ -24,7 +24,8 @@ router.post('/', async (req, res, next) => {
     let email = req.body.email;
     let userid = djb2(email);
     let password = req.body.password;
-    let type = "instructor";
+    let type = req.body.type;
+    console.log(type);
     let hash = bcrypt.hashSync(password, config.salt);
     let query = "email == " + email;
     try {
