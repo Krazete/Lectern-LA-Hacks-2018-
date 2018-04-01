@@ -46,13 +46,18 @@ body {
     margin: auto;
     height: 250px;
     background: #354C66;
+    text-align: justify;
     padding: 10px;
     border-radius: 10px;
     overflow: scroll;
 }
 
+.subtext {
+    margin: 1px;
+}
+
 .subtext.passed {
-    background: #88AABB;
+    background: #4D89FF;
 }
 
 #side-container {
