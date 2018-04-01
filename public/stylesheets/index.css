@@ -17,6 +17,12 @@ img {
 
 a {
     color: inherit;
+    transition: 0.2s ease-in;
+}
+
+a:hover {
+    color: whitesmoke;
+    border-bottom: 1px solid whitesmoke;
 }
 
 #container {
@@ -96,7 +102,7 @@ a {
     text-align: center;
     font-size: 3vh;
     color: whitesmoke;
-    transition: 0.2s;
+    transition: 0.2s ease-out;
 }
 
 .fillin-input:focus {

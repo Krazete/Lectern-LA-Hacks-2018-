@@ -17,6 +17,12 @@ img {
 
 a {
     color: inherit;
+    transition: 0.2s ease-in;
+}
+
+a:hover {
+    color: whitesmoke;
+    border-bottom: 1px solid whitesmoke;
 }
 
 #container {
@@ -25,6 +31,8 @@ a {
     left: 33%;
     height: 70%;
     width: 34%;
+
+    display: none;
 }
 
 #content-container {
@@ -99,13 +107,12 @@ a {
     text-align: center;
     font-size: 3vh;
     color: whitesmoke;
-    transition: 0.2s;
+    transition: 0.2s ease-in;
 }
 
 .fillin-input:focus {
     outline-width: 0;
     border-bottom: 3px solid #4D89FF;
-    transition: 0.2s;
 }
 
 #button-text {
@@ -166,6 +173,7 @@ label {
     font-size: 2.2vh;
     color: whitesmoke;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 button:hover {
