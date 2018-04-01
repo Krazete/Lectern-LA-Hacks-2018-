@@ -5,6 +5,7 @@
     "salt": 10,
     "usersCollection": "users",
     "classCollection": "class",
-    "noteCollection": "note",
-    "chatCollection": "chat"
+    "noteCollection": "notes",
+    "chatCollection": "chat",
+    "videoCollection": "videos"
 }

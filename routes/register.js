@@ -25,12 +25,11 @@ router.post('/', async (req, res, next) => {
     let userid = djb2(email);
     let password = req.body.password;
     let type = req.body.type;
-    console.log(type);
     let hash = bcrypt.hashSync(password, config.salt);
     let query = "email == " + email;
     try {
         await db.init();
-        const snapshot = await db.getDoc(config.usersCollection, query);
+        const snapshot = await db.getDoc(config.usersCollection, query, null);
         if (snapshot.size == 0) {
             await db.addUser(userid, email, hash, type);
             res.redirect('/login');
@@ -49,7 +48,7 @@ function djb2(str) {
         char = str.charCodeAt(i);
         hash = ((hash << 5) + hash) + char;
     }
-    return hash;  
-  }
+    return hash;
+}
 
 module.exports = router;

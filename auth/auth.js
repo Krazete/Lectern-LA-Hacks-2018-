@@ -11,7 +11,7 @@ async function auth(req, res, next) {
     try {
       const decoded = await jwt.verify(token, config.secret);
       // User is authorized
-      req.userid = decoded.uid;
+      req.uid = decoded.uid;
       req.auth = true;
       next();
 

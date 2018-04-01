@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Course Title and Date</title>
+		<title>Class</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
@@ -22,17 +22,33 @@
 	<body>
 		<div id="main-container">
 			<div id="navs">
-				<div class="nav-item" id="classes">Classes</div>
-				<div class="nav-item" id="videos">Videos</div>
+				<div class="nav-item dropdown" id="classes">
+				<a class="dropbtn" href="/">Class</a>
+				<div class="drop-content">
+					<% for (let c of classes) { %>
+						<a href=<%= "/class/" + c.classid %>><%= c.classname %></a>
+					<% } %>
+				</div>
+				</div>
+
+				<div class="nav-item dropdown" id="videos">
+				<a class="dropbtn" href="/">Videos</a>
+				<div class="drop-content">
+					<% for (let c of classes) { %>
+						<input type="button" onclick="changeVideo(`<%=c.vlink%>`)">A</input>
+					<% } %>
+				</div>
+
 				<div class="nav-item" id="logout">Logout</div>
+				</div>
 			</div>
 			<div id="main-content" data-vid="bHQqvYy5KYo">
-				<h1>Course Title and Date</h1>
-				<div id="video-container"></div>
-				<div id="subs"></div>
+					<h1><%= classname %></h1>
+					<div id="video-container"></div>
+					<div id="subs"></div>
+				</div>
 			</div>
-		</div>
-		<div id="side-container">
+			<div id="side-container">
 			<div id="tabs">
 				<div class="tab-item" id="notes">Notes</div>
 				<!-- <div class="tab-item" id="discussion">Discussion</div> -->
