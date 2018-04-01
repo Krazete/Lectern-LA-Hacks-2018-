@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f99c155-499b-4f56-a728-30c4076b4f7a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/mainview.ejs" afterPath="$PROJECT_DIR$/views/mainview.ejs" />
-    </list>
+    <list default="true" id="4f99c155-499b-4f56-a728-30c4076b4f7a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,8 +17,8 @@
       <file leaf-file-name="mainview.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/mainview.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="45" column="55" lean-forward="true" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="55" />
+            <state relative-caret-position="426">
+              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -52,7 +49,27 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1522574613795" expanded="true" signature="3028:3206" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="3078:3198" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="3394:3534" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="3450:3526" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="3767:4010" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="4068:4154" ph="{&quot;theme&quot;: &quot;snow&quot;...}" />
+                <marker date="1522574613795" expanded="true" signature="4087:4125" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="4205:4437" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="4215:4367" ph="//..." />
+                <marker date="1522574613795" expanded="true" signature="4566:4812" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="4721:4764" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="5097:5119" ph="/*...*/" />
+                <marker date="1522574613795" expanded="true" signature="5146:5829" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="5188:5345" ph="[...]" />
+                <marker date="1522574613795" expanded="true" signature="5373:5826" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="5450:5570" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="5494:5560" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="5617:5820" ph="{...}" />
+                <marker date="1522574613795" expanded="true" signature="5878:5898" ph="/*...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -234,12 +251,12 @@
       <workItem from="1522489584016" duration="8598000" />
       <workItem from="1522508369709" duration="4677000" />
       <workItem from="1522516268705" duration="23563000" />
-      <workItem from="1522568861763" duration="4732000" />
+      <workItem from="1522568861763" duration="4766000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41570000" />
+    <option name="totallyTimeSpent" value="41604000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -482,14 +499,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1522574613795" expanded="true" signature="3028:3206" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="3078:3198" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="3394:3534" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="3450:3526" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="3767:4010" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="4068:4154" ph="{&quot;theme&quot;: &quot;snow&quot;...}" />
+            <marker date="1522574613795" expanded="true" signature="4087:4125" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="4205:4437" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="4215:4367" ph="//..." />
+            <marker date="1522574613795" expanded="true" signature="4566:4812" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="4721:4764" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="5097:5119" ph="/*...*/" />
+            <marker date="1522574613795" expanded="true" signature="5146:5829" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="5188:5345" ph="[...]" />
+            <marker date="1522574613795" expanded="true" signature="5373:5826" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="5450:5570" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="5494:5560" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="5617:5820" ph="{...}" />
+            <marker date="1522574613795" expanded="true" signature="5878:5898" ph="/*...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/mainview.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="45" column="55" lean-forward="true" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="55" />
+        <state relative-caret-position="426">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
