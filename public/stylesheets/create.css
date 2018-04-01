@@ -1,7 +1,6 @@
 body, html {
     margin: 0 auto;
     width: 100%;
-    height: 100%;
 
     background: #141E30;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
@@ -18,7 +17,7 @@ img {
 
 #container {
     margin-top: 5vh;
-    margin-left: 5vh;
+    margin-left: 7vh;
     width: 40%;
     height: 70%;
 
@@ -70,8 +69,8 @@ img {
 #button-container {
     width: 100%;
     height: 4vh;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin-top: 5vh;
+    margin-bottom: 4vh;
 }
 
 button {
@@ -83,8 +82,23 @@ button {
 
     height: 100%;
     width: 15vw;
+    font-size: 2.0vh;
+    float: right;
 }
 
 button:hover {
     opacity: 0.7;
+    cursor: pointer;
+}
+
+#go-back {
+    float: right;
+    font-size: 2.0vh;
+    color: #4D89FF;
+    transition: 0.2s ease-out;
+}
+
+#go-back:hover {
+    color: whitesmoke;
+    border-bottom: 1px solid whitesmoke;
 }
