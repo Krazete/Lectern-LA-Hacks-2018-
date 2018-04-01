@@ -188,9 +188,16 @@ function init() {
 }
 
 function newComment(text) {
+    var ts = document.createElement("a");
+    ts.className = "ts";
+    ts.innerHTML = player.getCurrentTime();
+    ts.addEventListener("click", function () {
+        player.seekTo(parseFloat(ts.innerHTML));
+    });
     var comment = document.createElement("div");
     comment.className = "comments-section";
     comment.innerHTML = text;
+    comment.appendChild(ts);
     document.getElementById("comments-display").appendChild(comment);
 }
 

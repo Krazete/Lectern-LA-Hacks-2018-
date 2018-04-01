@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>List</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/list.css' />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -11,15 +11,16 @@
     <div class="class-list">
         <% if (err){ %>
             <script>
-                toastr.warning(`<%=err%>`); 
+                toastr.warning(`<%=err%>`);
             </script>
         <% } %>
         <% for (let cl of classes) { %>
-        <ul>
-            <% for (let info in cl) { %>
-                <li><%= info %>: <%= cl[info] %></li>
-            <% } %>
-        </ul>
+        <div class="box">
+            <% var asrc = "/class" + "/" + cl["classid"] %>
+            <h1><a href=<%=asrc%>><%=cl["classname"]%></a></h1>
+            <% var isrc = "https://img.youtube.com/vi/" + cl["vlink"] + "/0.jpg" %>
+            <img width="200px" src=<%=isrc%>>
+        </div>
         <% } %>
   </body>
 </html>

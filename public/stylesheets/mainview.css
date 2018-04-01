@@ -178,3 +178,15 @@ body {
     background: #EEEEEE;
     color: #000000;
 }
+
+.ts, .ts:hover {
+    text-align: 0;;
+    cursor: pointer;
+    color: #225566;
+}
+.ts:before {
+    content: "[";
+}
+.ts:after {
+    content: "]";
+}
