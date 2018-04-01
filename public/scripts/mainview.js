@@ -177,6 +177,7 @@ function init() {
     var commentsSubmit = document.getElementById("comments-submit");
     commentsSubmit.addEventListener("click", function () {
         newComment(commentsQuill.root.innerText);
+        commentsQuill.root.innerText = "";
     });
 
     var logout = document.getElementById("logout");
