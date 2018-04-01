@@ -172,19 +172,11 @@ function init() {
         theme: "snow"
     });
     commentsQuill.on("text-change", function () {
-        // console.log(commentsQuill.getText());
-        // commentsQuill.setText(commentsQuill.getText());
-        // var len = commentsQuill.getText().length;
         commentsQuill.removeFormat(0, Number.MAX_SAFE_INTEGER);
     });
     var commentsSubmit = document.getElementById("comments-submit");
     commentsSubmit.addEventListener("click", function () {
-        var quillRoot = Array.from(commentsQuill.root.children);
-        var div = document.createElement("div");
-        quillRoot.forEach(function (p) {
-            div.appendChild(p);
-        });
-        document.body.appendChild(div);
+        newComment(commentsQuill.root.innerText);
     });
 
     var logout = document.getElementById("logout");
@@ -192,6 +184,13 @@ function init() {
         document.cookie = "lectern=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
         location.reload();
     });
+}
+
+function newComment(text) {
+    var comment = document.createElement("div");
+    comment.className = "comments-section";
+    comment.innerHTML = text;
+    document.getElementById("comments-display").appendChild(comment);
 }
 
 window.addEventListener("DOMContentLoaded", init);
