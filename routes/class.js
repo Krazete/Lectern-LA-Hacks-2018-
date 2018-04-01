@@ -23,15 +23,15 @@ router.get('/:classid', auth, async (req, res, next) => {
                     foundClass = doc.data();
                     classes.push(foundClass);
                     if (foundClass.classid == classid) {
-                        viewClass = foundClass.classname;
+                        viewClass = foundClass;
                     }
                 });
                 console.log(classes);
                 if (!viewClass) {
-                    res.render('mainview', { "classname": classes[0].classname, "classes": classes });
+                    res.render('mainview', { "viewClass": classes[0], "classes": classes });
                 }
                 else {
-                    res.render('mainview', { "classname": viewClass, "classes": classes });
+                    res.render('mainview', { "viewClass": viewClass, "classes": classes });
                 }
             }
             else {

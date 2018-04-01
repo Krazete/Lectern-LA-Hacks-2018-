@@ -36,7 +36,15 @@ DB.prototype.addClass = function(userid, classid, classname, vlink) {
         userid: parseInt(userid),
         classid: parseInt(classid),
         classname: classname,
-        vlink: vlink
+        vlink: [vlink]
+    });
+}
+
+DB.prototype.addVideoToClass = function(did, linkarr, vlink) {
+    let newlink = linkarr;
+    newlink.push(vlink);
+    return this.db.collection(config.classCollection).doc(did).update({
+        vlink: newlink
     });
 }
 

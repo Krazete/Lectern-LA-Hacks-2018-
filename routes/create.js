@@ -30,12 +30,14 @@ router.post('/', auth, async (req, res, next) => {
         await db.init();
         const snapshot = await db.getDoc(config.classCollection, queryUID, queryClassID);
         if (snapshot.size != 0) {
-            // let foundClass;
-            // snapshot.forEach(doc => {
-            //     foundClass = doc.data();
-            //     console.log(foundClass);
-            // });
-            res.render('create', { "userid": userid, "err": "Class already exist", "msg": null });
+            let foundClass = null;
+            let foundClassID = null
+            snapshot.forEach(doc => {
+                foundClass = doc.data();
+                foundClassID = doc.id;
+            });
+            await db.addVideoToClass(foundClassID, foundClass.vlink, vlink);
+            res.redirect('/class/' + classid);
         }
         else {
             await db.addClass(userid, classid, classname, vlink);
