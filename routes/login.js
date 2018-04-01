@@ -27,7 +27,7 @@ router.post('/', async (req, res, next) => {
     let query = "email == " + email;
     try {
         await db.init();
-        const snapshot = await db.getDoc(config.usersCollection, query);
+        const snapshot = await db.getDoc(config.usersCollection, query, null);
         if (snapshot.size == 0) {
             res.render('login', { "err": "User not exist", "msg": null });
         }
@@ -36,7 +36,6 @@ router.post('/', async (req, res, next) => {
             snapshot.forEach(doc => {
                 foundUser = doc.data();
             });
-            console.log(foundUser.hash);
             // Hash provided password to compare with hash in db
             if (bcrypt.compareSync(req.body.password, foundUser.hash)) {
                 const token = await jwt.sign({ uid: foundUser.userid }, config.secret);
