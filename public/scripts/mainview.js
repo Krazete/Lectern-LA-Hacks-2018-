@@ -29,6 +29,9 @@ function videoListener() {
 }
 
 function initSubs(response) {
+    var subs = document.getElementById("subs");
+    subs.innerHTML = "";
+
     var parser = new DOMParser;
 
     var content = document.createElement("div");
@@ -44,7 +47,7 @@ function initSubs(response) {
         subtext.addEventListener("click", function () {
             video.currentTime = subtext.dataset.timestamp;
         });
-        document.getElementById("subs").appendChild(subtext);
+        subs.appendChild(subtext);
     });
 
     // var demo = `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
@@ -86,10 +89,11 @@ function initSubs(response) {
     // });
 }
 
-function init() {
+function loadVideo() {
     var vid = document.getElementById("main-content").dataset.vid;
 
     var videoContainer = document.getElementById("video-container");
+    videoContainer.innerHTML = "";
     video = document.createElement("iframe");
     video.width = "100%";
     video.height = "100%";
@@ -103,6 +107,16 @@ function init() {
     xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xml.onload = initSubs;
     xml.send();
+}
+
+function init() {
+    loadVideo();
+    var videoList = Array.from(document.getElementById("videos").getElementsByTagName("input")).forEach(function (e) {
+        e.addEventListener("click", function () {
+            document.getElementById("main-content").dataset.vid = this.dataset.vid;
+            loadVideo();
+        });
+    });
 
     tabItems = Array.from(document.getElementsByClassName("tab-item"));
     tabInfos = Array.from(document.getElementsByClassName("tab-info"));

@@ -51,6 +51,9 @@ router.get('/:classid', auth, async (req, res, next) => {
 router.get('/', auth, async (req, res, next) => {
     // User logged in
     if (req.auth) {
+        let userid = req.uid;
+        let classid = req.params.classid;
+        let queryUID = "userid == " + userid;
         try {
             await db.init();
             const snapshot = await db.getDoc(config.classCollection, queryUID, null);
