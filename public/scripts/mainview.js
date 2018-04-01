@@ -97,7 +97,7 @@ function saveNote() {
     var quillRoot = Array.from(notesQuill.root.children);
     var div = document.createElement("div");
     quillRoot.forEach(function (p) {
-        div.appendChild(p);
+        div.appendChild(p.cloneNode(true));
     });
     var note = encodeURIComponent(div.innerHTML);
 
@@ -107,11 +107,11 @@ function saveNote() {
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify({"note": note}));
     xhttp.addEventListener("readystatechange", processRequest, false);
-    function processRequest(e) 
+    function processRequest(e)
     {
-        if (xhttp.readyState == 4 && xhttp.status != 200) 
+        if (xhttp.readyState == 4 && xhttp.status != 200)
         {
-            console.log(xhttp.responseText);	
+            console.log(xhttp.responseText);
             alert("Failed to save note");
         }
     }
@@ -125,12 +125,12 @@ function getNote() {
     xhttp.open("GET", "http://localhost:3000/api/note/" + classid + "/" + vlink, true);
     xhttp.send();
     xhttp.addEventListener("readystatechange", processRequest, false);
-    function processRequest(e) 
+    function processRequest(e)
     {
-        if (xhttp.readyState == 4 && xhttp.status == 200) 
+        if (xhttp.readyState == 4 && xhttp.status == 200)
         {
             response = JSON.parse(xhttp.responseText);
-            document.getElementById("notes-editor").innerHTML = decodeURIComponent(response.note);
+            notesQuill.root.innerHTML = decodeURIComponent(response.note);
         }
     }
 }
@@ -182,7 +182,7 @@ function init() {
         });
         document.body.appendChild(div);
     });
-  
+
     getNote();
 
     var logout = document.getElementById("logout");

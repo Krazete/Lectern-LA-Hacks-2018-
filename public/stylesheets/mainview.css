@@ -170,20 +170,8 @@ body {
 
 
 
-#notes-display {
-    margin: 10px;
-}
-
 #comments-display {
     margin: 10px;
-}
-
-.notes-section {
-    border-bottom: 1px solid grey;
-    padding: 10px;
-
-    background: #EEEEEE;
-    color: #000000;
 }
 
 .comments-section {
