@@ -2,6 +2,8 @@ var tabItems;
 var tabInfos;
 var video;
 var player;
+var notesQuill;
+var commentsQuill;
 
 function resetTabItems() {
     tabItems.forEach(function (tabItem) {
@@ -63,7 +65,7 @@ function loadVideo() {
     video.id = "youtube-video";
     video.width = "100%";
     video.height = "100%";
-    video.src = "https://www.youtube.com/embed/" + vid + "?modestbranding=1&autohide=1&showinfo=0&controls=0&cc_load_policy=3&enablejsapi=1";
+    video.src = "https://www.youtube.com/embed/" + vid + "?modestbranding=1&autohide=1&showinfo=0&controls=0&cc_load_policy=3";
     video.setAttribute("frameborder", "0");
     video.setAttribute("allowfullscreen", "");
     videoContainer.appendChild(video);
@@ -89,6 +91,50 @@ function onYouTubeIframeAPIReady() {
     loadVideo();
 }
 
+function saveNote() {
+    var classid = document.getElementById("classid").getAttribute("value");
+    var vlink = document.getElementById("main-content").getAttribute("data-vid");
+    var quillRoot = Array.from(notesQuill.root.children);
+    var div = document.createElement("div");
+    quillRoot.forEach(function (p) {
+        div.appendChild(p);
+    });
+    var note = encodeURIComponent(div.innerHTML);
+
+    var xhttp = new XMLHttpRequest();
+    var response;
+    xhttp.open("POST", "http://localhost:3000/api/note/" + classid + "/" + vlink, true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify({"note": note}));
+    xhttp.addEventListener("readystatechange", processRequest, false);
+    function processRequest(e) 
+    {
+        if (xhttp.readyState == 4 && xhttp.status != 200) 
+        {
+            console.log(xhttp.responseText);	
+            alert("Failed to save note");
+        }
+    }
+}
+
+function getNote() {
+    var classid = document.getElementById("classid").getAttribute("value");
+    var vlink = document.getElementById("main-content").getAttribute("data-vid");
+    var xhttp = new XMLHttpRequest();
+    var response;
+    xhttp.open("GET", "http://localhost:3000/api/note/" + classid + "/" + vlink, true);
+    xhttp.send();
+    xhttp.addEventListener("readystatechange", processRequest, false);
+    function processRequest(e) 
+    {
+        if (xhttp.readyState == 4 && xhttp.status == 200) 
+        {
+            response = JSON.parse(xhttp.responseText);
+            document.getElementById("notes-editor").innerHTML = decodeURIComponent(response.note);
+        }
+    }
+}
+
 function init() {
     var videoList = Array.from(document.getElementById("videos").getElementsByTagName("input"));
     videoList.forEach(function (e) {
@@ -111,21 +157,11 @@ function init() {
     });
     selectTabItem(tabItems[0]);
 
-    var notesQuill = new Quill("#notes-editor", {
+    notesQuill = new Quill("#notes-editor", {
         theme: "snow"
     });
-    var notesSubmit = document.getElementById("notes-submit");
-    notesSubmit.addEventListener("click", function () {
-        var quillRoot = Array.from(notesQuill.root.children);
-        var div = document.createElement("div");
-        quillRoot.forEach(function (p) {
-            div.appendChild(p);
-        });
-        document.body.appendChild(div);
-        console.log(encodeURIComponent(div.innerHTML));
-    });
 
-    var commentsQuill = new Quill("#comments-editor", {
+    commentsQuill = new Quill("#comments-editor", {
         modules: {
             toolbar: false
         },
@@ -146,6 +182,8 @@ function init() {
         });
         document.body.appendChild(div);
     });
+  
+    getNote();
 
     var logout = document.getElementById("logout");
     logout.addEventListener("click", function () {
