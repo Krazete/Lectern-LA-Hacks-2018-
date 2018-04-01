@@ -53,6 +53,8 @@ body {
 }
 
 .subtext {
+    font-size: 16px;
+    line-height: 21px;
     margin: 1px;
 }
 
@@ -126,7 +128,7 @@ body {
 }
 
 .dropdown .dropbtn {
-    font-size: 16px;    
+    font-size: 16px;
     border: none;
     outline: none;
     color: white;
@@ -134,18 +136,18 @@ body {
     background-color: inherit;
     font-family: inherit;
   }
-  
+
   .navbar a:hover, .dropdown:hover .dropbtn {
     background-color: rgb(129, 208, 214);
   }
-  
+
   .drop-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   }
-  
+
   .drop-content a {
     float: none;
     color: black;
@@ -154,11 +156,11 @@ body {
     display: block;
     text-align: left;
   }
-  
+
   .drop-content a:hover {
     background-color: #ddd;
   }
-  
+
   .dropdown:hover .drop-content {
     display: block;
   }

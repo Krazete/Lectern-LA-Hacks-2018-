@@ -18,7 +18,6 @@ function selectTabItem(tabItem) {
 }
 
 function videoListener() {
-    console.log(video.currentTime);
     var passed = true;
     var subtexts = document.getElementById("subs").children;
     for (var i = 0; i < subtexts.length; i++) {
@@ -49,7 +48,7 @@ function initSubs(response) {
         subtext.dataset.timestamp = s.getAttribute("start");
         subtext.dataset.timedelta = s.getAttribute("dur");
         subtext.addEventListener("click", function () {
-            player.seekTo(subtext.dataset.timestamp);
+            player.seekTo(parseFloat(subtext.dataset.timestamp));
         });
         subs.appendChild(subtext);
     });
@@ -123,6 +122,7 @@ function init() {
             div.appendChild(p);
         });
         document.body.appendChild(div);
+        console.log(encodeURIComponent(div.innerHTML));
     });
 
     var commentsQuill = new Quill("#comments-editor", {

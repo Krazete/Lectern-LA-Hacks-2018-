@@ -37,14 +37,14 @@
 				<a class="dropbtn" href="/">Videos</a>
 				<div class="drop-content">
 					<% for (let v of viewClass.vlink) { %>
-						<input type="button" onclick="changeVideo(`<%=v%>`)"><%=v%></input>
+						<input type="button" data-vid="<%=v%>"><%=v%></input>
 					<% } %>
 				</div>
 				</div>
 
                 <div class="nav-item dropdown" id="logout">Logout</div>
 			</div>
-			<div id="main-content" data-vid="emMmgw8aK-w">
+			<div id="main-content" data-vid="NgbK43jB4rQ">
 					<h1><%= viewClass.classname %></h1>
 					<div id="video-container"></div>
 					<div id="subs"></div>
