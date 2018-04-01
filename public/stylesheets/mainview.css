@@ -51,6 +51,10 @@ body {
     overflow: scroll;
 }
 
+.subtext.passed {
+    background: #88AABB;
+}
+
 #side-container {
     background: #88AABB;
     position: fixed;
