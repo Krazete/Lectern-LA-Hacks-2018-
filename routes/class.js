@@ -65,6 +65,9 @@ router.get('/', auth, async (req, res, next) => {
                 });
                 res.redirect('/class/' + classes[0].classid);
             }
+            else {
+                res.redirect('/list');
+            }
         }
         catch (err) {
             res.redirect('/list');

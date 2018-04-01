@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  </head>
+  <body>
+    <div class="class-list">
+        <% if (err){ %>
+            <script>
+                toastr.warning(`<%=err%>`); 
+            </script>
+        <% } %>
+        <% for (let cl of classes) { %>
+        <ul>
+            <% for (let info in cl) { %>
+                <li><%= info %>: <%= cl[info] %></li>
+            <% } %>
+        </ul>
+        <% } %>
+  </body>
+</html>
