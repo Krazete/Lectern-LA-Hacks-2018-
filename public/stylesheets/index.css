@@ -54,7 +54,7 @@ a {
 }
 
 #separator {
-    height: 10%;
+    height: 5%;
 }
 
 .login-container {
@@ -117,10 +117,10 @@ input:-webkit-autofill {
 
 #remember-me {
     position: relative;
-    top: 3%;
+    top: 5%;
     text-align: center;
     color: whitesmoke;
-    height: 10%;
+    height: 15%;
     font-size: 2vh;
 }
 
