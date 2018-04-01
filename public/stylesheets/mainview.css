@@ -2,6 +2,10 @@ body {
     color: #EEEEEE;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 #main-container {
     position: absolute;
     top: 0;
