@@ -85,6 +85,12 @@ function init() {
         });
         document.body.appendChild(div);
     });
+
+    var logout = document.getElementById("logout");
+    logout.addEventListener("click", function () {
+        document.cookie = "lectern=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        location.reload();
+    });
 }
 
 window.addEventListener("DOMContentLoaded", init);
