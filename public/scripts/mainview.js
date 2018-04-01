@@ -91,12 +91,16 @@ function onYouTubeIframeAPIReady() {
 }
 
 function init() {
-    var videoList = Array.from(document.getElementById("videos").getElementsByTagName("input")).forEach(function (e) {
+    var videoList = Array.from(document.getElementById("videos").getElementsByTagName("input"));
+    videoList.forEach(function (e) {
         e.addEventListener("click", function () {
             document.getElementById("main-content").dataset.vid = this.dataset.vid;
             loadVideo();
         });
     });
+    if (videoList.length > 0) {
+        document.getElementById("main-content").dataset.vid = videoList[0].dataset.vid;
+    }
 
     tabItems = Array.from(document.getElementsByClassName("tab-item"));
     tabInfos = Array.from(document.getElementsByClassName("tab-info"));
