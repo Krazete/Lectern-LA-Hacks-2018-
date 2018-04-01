@@ -28,7 +28,7 @@ router.get('/:classid', auth, async (req, res, next) => {
                 });
                 console.log(classes);
                 if (!viewClass) {
-                    res.render('mainview', { "classname": classes[0], "classes": classes });
+                    res.render('mainview', { "classname": classes[0].classname, "classes": classes });
                 }
                 else {
                     res.render('mainview', { "classname": viewClass, "classes": classes });
@@ -65,10 +65,11 @@ router.get('/', auth, async (req, res, next) => {
                     classes.push(foundUserClass);
                     console.log(classes);
                 });
-                res.render('mainview', { "classname": classes[0], "classes": classes, "vlink": foundUserClass.vlink });
+                res.redirect('/class/' + classes[0].classid);
             }
         }
         catch (err) {
+            console.log(err);
             res.redirect('/list');
         }
     }
